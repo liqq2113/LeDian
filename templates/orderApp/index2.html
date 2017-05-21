@@ -1,0 +1,300 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>主页</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/static/orderApp/css/style.css?v=2">
+    <link rel="stylesheet" href="../css/jcarousel.css">
+  <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+  <script src="/static/orderApp/js/libs/modernizr-1.7.min.js"></script>
+
+</head>
+
+<body class="home">
+
+<!-- LOGIN POP UPS -->
+<div id="popup-overlay"></div>
+<div class="popup" id="popup-login">
+	<h2>Login form</h2>
+	<hr class="separator">
+	<form method="post" action="" class="form clearfix">
+		<fieldset>
+			<label for="login-username">用户名:</label>
+			<input type="text" name="" id="login-username" class="input text">
+			<label for="login-password">密码:</label>
+			<input type="password" name="" id="login-password" class="input text">
+		</fieldset>
+	</form>
+	<hr class="separator">
+	<button class="button submit">登录</button>
+	<div class="links"><a href="#">忘记密码</a> | <a href="#" class="register-btn">新建账户</a></div>
+	<a class="close" href="#"></a>
+</div>
+<div class="popup" id="popup-register">
+		<h2>Registration form</h2>
+		<hr class="separator">
+		<form method="post" action="" class="form clearfix">
+			<fieldset>
+				<label for="login-username">用户名:</label>
+				<input type="text" name="" id="login-username" class="input text">
+				<label for="login-email">邮箱:</label>
+				<input type="text" name="" id="login-email" class="input text error" value="Error">
+				<label for="login-password">密码:</label>
+				<input type="password" name="" id="login-password" class="input text">
+				<label for="login-confirm-password">确认密码:</label>
+				<input type="password" name="" id="login-confirm-password" class="input text">
+			</fieldset>
+
+			<hr class="separator">
+
+			<div class="checks">
+				<div class="check-row">
+					<label><input type="checkbox" class="input checkbox">我已经阅读并同意<a href="#">这些条款及条件</a></label>
+				</div>
+				<div class="check-row">
+					<label><input type="checkbox" class="input checkbox">我同意并接受促销邮件</label>
+				</div>
+			</div>
+
+			<button class="button submit">马上注册</button>
+		</form>
+		<a class="close" href="#"></a>
+	</div>
+<!-- END LOGIN POP UPS -->
+  <div class='wrapper '>
+    <header>
+      <div class="top-nav">
+        <nav>
+          <ul>
+            <li><a href="#" id="login-btn">登录</a></li>
+            <li><a href="#" class="register-btn">注册</a></li>
+              <li><a href="#" class="person">个人中心</a></li>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="contact.html">联系我们</a></li>
+            <li><a href="menu.html">菜单</a></li>
+          </ul>
+        </nav>
+
+        <form class="search-form" method="post">
+          <input type="text" class="search">
+          <input type="submit" class="search-submit" value="">
+        </form>
+
+      </div>
+      <a href="index.html" class="logo"><img src="/static/orderApp/images/logo.png" alt="your logo" /></a>
+			<nav class="main-menu">
+				<ul>
+					<li><a href="listing.html">蔬菜和水果</a></li>
+					<li><a href="listing.html">海鲜</a></li>
+					<li><a href="listing.html">肉类</a></li>
+					<li><a href="listing.html">主菜</a></li>
+					<li><a href="listing.html">披萨和意大利面</a></li>
+					<li><a href="listing.html">甜品</a></li>
+					<li id="lava-elm"></li>
+				</ul>
+			</nav>
+      <div class="header-slider-canvas">
+				<div class="parts part-1"></div>
+				<div class="parts part-2"></div>
+				<div class="parts part-3"></div>
+			</div>
+
+	   <ul id="mycarousel" class="jcarousel-skin-header-slider">
+		<li><img src="/static/orderApp/images/toystory.jpg" width="680px" height="464" alt="" /><div class="description"><span class='
+price '>24.00</span><span class='
+name '>Lamb chops and asparagus</span><a href="#" class="shop">马上购买</a></div></li>
+		<li><img src="/static/orderApp/images/up.jpg" width="680px"  height="464" alt="" /><div class="description"><span class='
+price '>39.00</span><span class='
+name '>Lamb chops and asparagus</span><a href="#" class="shop">马上购买</a></div></li>
+		<li><img src="/static/orderApp/images/walle.jpg" width="680px"  height="464" alt="" /></li>
+		<li><img src="/static/orderApp/images/nemo.jpg" width="680px"  height="464" alt="" /></li>
+	  </ul>
+    </header><div class="copyrights">Collect from <a href="http://www.mycodes.net/"  title="网站模板">网站模板</a></div>
+<div class="content clearfix">
+<div id="meals-of-the-day">
+				<h3 class="title-separator"><span class="title">今天的肉类菜品</span><span class="sep"></span></h3>
+				<ul>
+					<li class="meal">
+						<div class="img-holder"><img src="/static/orderApp/images/meal-1.png" alt=""></div>
+            <div class="desc-holder">
+							<h1><a href="#">Lorem ipsum dolar sit amet consectetur</a></h1>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac massa mauris, vitae viverra mauris. Proin libero purus, feugiat rhoncus auctor ut, tempus dictum nunc.</p>
+							<span class="price">15.45</span>
+							<a href="#" class="add-to-cart-button">加入购物车</a>
+						</div>
+					</li>
+					<li class="meal">
+						<div class="img-holder"><img src="/static/orderApp/images/meal-2.png" alt=""></div>
+            <div class="desc-holder">
+							<h1><a href="#">Lorem ipsum dolar sit amet consectetur</a></h1>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac massa mauris, vitae viverra mauris. Proin libero purus, feugiat rhoncus auctor ut, tempus dictum nunc.</p>
+							<span class="price">15.45</span>
+							<a href="#" class="add-to-cart-button">加入购物车</a>
+						</div>
+					</li>
+					<li class="meal">
+						<div class="img-holder"><img src="/static/orderApp/images/meal-3.png" alt=""></div>
+            <div class="desc-holder">
+							<h1><a href="#">Lorem ipsum dolar sit amet consectetur</a></h1>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac massa mauris, vitae viverra mauris. Proin libero purus, feugiat rhoncus auctor ut, tempus dictum nunc.</p>
+							<span class="price">15.45</span>
+							<a href="#" class="add-to-cart-button">加入购物车</a>
+						</div>
+					</li>
+					<li class="meal">
+						<div class="img-holder"><img src="/static/orderApp/images/meal-1.png" alt=""></div>
+            <div class="desc-holder">
+							<h1><a href="#">Lorem ipsum dolar sit amet consectetur</a></h1>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac massa mauris, vitae viverra mauris. Proin libero purus, feugiat rhoncus auctor ut, tempus dictum nunc.</p>
+							<span class="price">15.45</span>
+							<a href="#" class="add-to-cart-button">加入购物车</a>
+						</div>
+					</li>
+					<li class="meal">
+						<div class="img-holder"><img src="/static/orderApp/images/meal-2.png" alt=""></div>
+            <div class="desc-holder">
+							<h1><a href="#">Lorem ipsum dolar sit amet consectetur</a></h1>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac massa mauris, vitae viverra mauris. Proin libero purus, feugiat rhoncus auctor ut, tempus dictum nunc.</p>
+							<span class="price">15.45</span>
+							<a href="#" class="add-to-cart-button">加入购物车</a>
+						</div>
+					</li>
+					<li class="meal">
+						<div class="img-holder"><img src="/static/orderApp/images/meal-3.png" alt=""></div>
+            <div class="desc-holder">
+							<h1><a href="#">Lorem ipsum dolar sit amet consectetur</a></h1>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac massa mauris, vitae viverra mauris. Proin libero purus, feugiat rhoncus auctor ut, tempus dictum nunc.</p>
+							<span class="price">15.45</span>
+							<a href="#" class="add-to-cart-button">加入购物车</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<h3 class="title-separator"><span class="title">特色肉类菜品</span><span class="sep"></span></h3>
+
+
+			<div id="featured-meals">
+				<ul>
+					<li class="meal">
+						<div class="img-holder"><img src="/static/orderApp/images/meal-4.jpg" alt=""></div>
+						<h1><a href="#">Lorem ipsum</a></h1>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+						<span class="price">15.45</span>
+						<a href="#" class="add-to-cart-button">加入购物车</a>
+					</li>
+					<li class="meal">
+						<div class="img-holder"><img src="/static/orderApp/images/meal-5.jpg" alt=""></div>
+						<h1><a href="#">Lorem ipsum</a></h1>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+						<span class="price">15.45</span>
+						<a href="#" class="add-to-cart-button">加入购物车</a>
+					</li>
+					<li class="meal">
+						<div class="img-holder"><img src="/static/orderApp/images/meal-6.jpg" alt=""></div>
+						<h1><a href="#">Lorem ipsum</a></h1>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+						<span class="price">15.45</span>
+						<a href="#" class="add-to-cart-button">加入购物车</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="cart-box">
+				<div class="top">购物车</div>
+				<div class="body">
+					<ul>
+						<li class="info">
+							<span class="products"><strong>5</strong>菜品</span>
+							<a href="#">查看购物车</a>
+						</li>
+						<li class="price">
+							<span class="label">航运</span>
+							<span class="value">0.00</span>
+						</li>
+						<li class="price">
+							<span class="label">总共</span>
+							<span class="value">0.00</span>
+						</li>
+					</ul>
+					<a class="submit-button" href="#">结算</a>
+					<div class="graphic"></div>
+				</div>
+			</div>
+  </div>
+</div>
+		<footer>
+			<div class="footer-holder">
+				<a href="" class="logo">Cooker标志</a>
+						<div class="newsletter">
+							<div class="quote">
+								<h6>实时通讯</h6>
+								<p>注册我们的通讯，并随时了解新的优惠和服务：</p>
+								<form method="post">
+									<input type="text"><input type="submit" value="提交" class="submit-button">
+								</form>
+							</div>
+						</div>
+						<div class="links first">
+							<h6>关注我们通过...</h6>
+							<ul>
+								<li class="facebook"><a href="#">Facebook</a></li>
+								<li class="twitter"><a href="#">Twitter</a></li>
+								<li class="rss"><a href="#">Rss feed</a></li>
+							</ul>
+						</div>
+						<div class="links">
+							<h6>有用的链接</h6>
+							<ul>
+								<li><a href="#">特色</a></li>
+								<li><a href="#">新菜品</a></li>
+								<li><a href="#">使用条款及条件</a></li>
+								<li><a href="#">关于我们</a></li>
+								<li><a href="#">联系我们</a></li>
+								<li><a href="#">网站地址</a></li>
+                                <li><a href="#">后台管理</a></li>
+							</ul>
+						</div>
+						<div class="links">
+							<h6>目录</h6>
+							<ul>
+								<li><a href="#">蔬菜和水果</a></li>
+								<li><a href="#">海鲜类</a></li>
+								<li><a href="#">肉类</a></li>
+								<li><a href="#">主菜</a></li>
+								<li><a href="#">披萨和意大利面</a></li>
+								<li><a href="#">甜品类</a></li>
+							</ul>
+						</div>
+						<div class="credits clearfix">
+							&copy; Copyright &copy; 2013.Company name All rights reserved. More Templates <a href="http://www.mycodes.net/" target="_blank" title="乐点">乐点</a>
+						</div>
+			</div>
+    </footer>
+</body>
+
+
+    <script type="text/javascript" src="/static/orderApp/js/libs/jquery-1.7.1.min.js"></script>
+  <script src="/static/orderApp/js/libs/jquery.easing.1.3.js"></script>
+  <script src="/static/orderApp/js/script.js"></script>
+  <script src="/static/orderApp/js/libs/jquery.jcarousel.min.js"></script>
+
+<script type="text/javascript">
+	// FRONT SLIDER STARTER
+jQuery(document).ready(function() {
+jQuery('#mycarousel').jcarousel({
+auto: 3,
+wrap: 'last',
+scroll: 1,
+animation: 'slow',
+initCallback: mycarousel_initCallback,
+});
+});
+	</script>
+</html>
