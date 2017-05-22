@@ -43,10 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'my_users',
     'orderApp',
-    'crispy_forms',
-    # 'extra_apps.pure_pagination',
     'xadmin',
+    'crispy_forms',
+    # 'pure_pagination',
+    'captcha',
 ]
+
+AUTH_USER_MODEL = 'my_users.UserProfile'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
