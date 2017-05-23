@@ -98,9 +98,11 @@ h3.title-separator span.sep {
 .wrapper {
   width: 970px;
   margin: 0 auto;
-	padding: 0 115px;
+    padding: 0 115px;
+}
+.menu .wrapper {
   background: url('../images/header-bg.png') no-repeat;
-} 
+}
 .home .wrapper {
   background: url('../images/home-header.png') no-repeat;
 } 

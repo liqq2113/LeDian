@@ -1,0 +1,35 @@
+{% load staticfiles %}
+
+<div class="top-nav">
+    <nav>
+        <ul>
+            <li><a href="/">主页</a></li>
+            <li><a href="#" id="login-btn">登录</a></li>
+            <li><a href="{% url 'register' %}" class="register-btn">注册</a></li>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="contact.html">联系我们</a></li>
+            <li><a href="{% url 'menu' %}">菜单</a></li>
+        </ul>
+    </nav>
+
+    <form class="search-form" method="post">
+        <input type="text" class="search">
+        <input type="submit" class="search-submit" value="">
+    </form>
+</div>
+
+<a href="index.html" class="logo">
+    <img src="{% static 'my_users/images/logo.png' %}" alt="your logo" />
+</a>
+
+<nav class="main-menu">
+    <ul>
+        <li><a href="listing.html">水果蔬菜类</a></li>
+        <li><a href="listing.html">海鲜类</a></li>
+        <li><a href="listing.html">肉类</a></li>
+        <li><a href="listing.html">主菜</a></li>
+        <li><a href="listing.html">披萨和意大利面</a></li>
+        <li><a href="listing.html">甜品类</a></li>
+        <li id="lava-elm"></li>
+    </ul>
+</nav>
