@@ -4,7 +4,7 @@
 
 import xadmin
 from xadmin import views
-from .models import EmailVerifyRecord, Banner
+from .models import EmailVerifyRecord, Banner, UserProfile
 
 
 class BaseSetting(object):
@@ -16,6 +16,12 @@ class GlobalSetting(object):
     site_title = '乐点餐饮后台管理系统'
     site_footer = '乐点餐饮'
     menu_style = 'accordion'
+
+
+class UserProfileAdmin(object):
+    list_display = ['nick_name', 'birday', 'gender', 'address', 'mobile', 'image']
+    search_fields = ['nick_name', 'birday', 'gender', 'address', 'mobile', 'image']
+    list_filter = ['nick_name', 'birday', 'gender', 'address', 'mobile', 'image']
 
 
 class EmailVerifyRecordAdmin(object):
@@ -30,6 +36,7 @@ class BannerAdmin(object):
     list_filter = ['title', 'image', 'url', 'index', 'add_time']
 
 
+xadmin.site.register(UserProfile, UserProfileAdmin)
 xadmin.site.register(EmailVerifyRecord, EmailVerifyRecordAdmin)
 xadmin.site.register(Banner, BannerAdmin)
 xadmin.site.register(views.BaseAdminView, BaseSetting)
