@@ -17,7 +17,7 @@ class DishesType(models.Model):
 
 class Dish(models.Model):
     name = models.CharField(max_length=100, verbose_name=u'菜名')
-    image = models.ImageField(default='dish/%Y/%m', max_length=100, verbose_name=u'图片')
+    image = models.ImageField(upload_to='dish/%Y/%m', max_length=100, verbose_name=u'图片')
     price = models.FloatField(verbose_name=u'价格')
     type = models.ForeignKey(DishesType, verbose_name=u'菜品类别')
     description = models.TextField(verbose_name=u'描述')

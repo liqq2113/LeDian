@@ -1,7 +1,9 @@
+# coding:utf-8
 from __future__ import unicode_literals
 
 from django.apps import AppConfig
 
 
-class OrderappConfig(AppConfig):
-    name = 'apps.orderApp'
+class MyUsersConfig(AppConfig):
+    name = 'orderApp'
+    verbose_name = u'餐饮'
