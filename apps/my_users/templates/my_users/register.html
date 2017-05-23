@@ -1,0 +1,40 @@
+{% extends 'my_users/index.html' %}
+{% load user_tags %}
+{% load staticfiles %}
+{% block register %}
+		<h2>注册</h2>
+		<hr class="separator">
+		<form method="post" action="{% url 'register' %}" class="form clearfix">
+        <input type='hidden' name='csrfmiddlewaretoken' value='gTZljXgnpvxn0fKZ1XkWrM1PrCGSjiCZ' />
+			<fieldset>
+				<label for="login-username">用户名:</label>
+				<input type="text" name="username" id="login-username" class="input text {% if register_form.errors.username %}error{% endif %}" value="{% error_msg register_form.errors.username %}">
+				<label for="login-email">邮箱:</label>
+				<input type="text" name="email" id="login-email" class="input text {% if register_form.errors.email %}error{% endif %}" value="{% error_msg register_form.errors.email %}">
+				<label for="login-password">密码:</label>
+				<input {% if not register_form.errors.password %}type="password"{% endif %} name="password" id="login-password" class="input text {% if register_form.errors.password %}error{% endif %}" value="{% error_msg register_form.errors.password %}">
+				<label for="login-confirm-password">确认密码:</label>
+				<input {% if not register_form.errors.confirm_password %}type="password"{% endif %} name="confirm_password" id="login-confirm-password" class="input text {% if register_form.errors.confirm_password %}error{% endif %}" value="{% error_msg register_form.errors.confirm_password %}">
+            <div class="marb13 captcha1">
+                <label >验证码:</label>
+               {{ register_form.captcha }}
+            </div>
+            <div class="error marb13" >{% if register_form.errors.captcha %}验证码错误。{% endif %}{{ msg }}</div>
+			</fieldset>
+
+			<hr class="separator">
+
+{#			<div class="checks">#}
+{#				<div class="check-row">#}
+{#					<label><input type="checkbox" class="input checkbox">I have read and agree to the <a href="#">Terms &amp; Conditions</a></label>#}
+{#				</div>#}
+{#				<div class="check-row">#}
+{#					<label><input type="checkbox" class="input checkbox">I agree to recieve promotional mails</label>#}
+{#				</div>#}
+{#			</div>#}
+
+			<button class="button submit">注册</button>
+        {% csrf_token %}
+		</form>
+		<a class="close" href="#"></a>
+{% endblock %}
