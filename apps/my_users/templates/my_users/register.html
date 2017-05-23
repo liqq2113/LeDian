@@ -1,4 +1,5 @@
 {% extends 'my_users/index.html' %}
+
 {% load user_tags %}
 {% load staticfiles %}
 {% block register %}
@@ -22,6 +23,16 @@
             <div class="marb13 captcha1">
                 <label >验证码:</label>
                {{ register_form.captcha }}
+                <script type="text/javascript">
+                    $('.captcha').click(function(){ //点击图片刷新
+                        var tmp = Math.random().toString();
+                        $.get("?newsn=1&tmp="+tmp, function(result){
+                            $('.captcha').attr("src", result);
+                            $('#id_captcha_0').attr("value", result.split('/')[3]);
+                        });
+                        return false;
+                    });
+                </script>
             </div>
             <div class="error marb13" >{% if register_form.errors.captcha %}验证码错误。{% endif %}{{ msg }}</div>
 			</fieldset>

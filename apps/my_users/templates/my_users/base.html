@@ -44,16 +44,6 @@
     });
     });
     </script>
-    <script type="text/javascript">
-        $('.captcha').click(function(){ //点击图片刷新
-            var tmp = Math.random().toString();
-            $.get("?newsn=1&tmp="+tmp, function(result){
-                $('.captcha').attr("src", result);
-                $('#id_captcha_0').attr("value", result.split('/')[3]);
-            });
-            return false;
-        });
-    </script>
 </head>
 
 <body class="{% block page_type %}{% endblock %}">
@@ -63,7 +53,6 @@
 
     {#登陆提示框#}
     <div class="popup" id="popup-login">
-    {% block login %}
     <h2>登录</h2>
     <hr class="separator">
     <form method="post" action="{% url 'login' %}" class="form clearfix">
@@ -80,7 +69,6 @@
     {#	<button class="button submit"> 登录 </button>#}
     <div class="links"><a href="#"> 忘记密码 </a> | <a href="#" class="register-btn"> 注册 </a></div>
     <a class="close" href="#"></a>
-    {% endblock %}
     </div>
 
     {#注册提示框#}
