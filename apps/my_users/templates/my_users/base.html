@@ -1,0 +1,104 @@
+{% load staticfiles %}
+{% load user_tags %}
+{% load staticfiles %}
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>LeDian</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="{% static 'my_users/css/style.css' %}">
+    {#  <link rel="stylesheet" href="../css/jcarousel.css">#}
+    <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+    <script src="{% static 'my_users/js/libs/modernizr-1.7.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'my_users/js/libs/jquery-1.7.1.min.js' %}"></script>
+    <script src="{% static 'my_users/js/libs/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'my_users/js/script.js' %}"></script>
+    <script src="{% static 'my_users/js/libs/jquery.jcarousel.min.js' %}"></script>
+    <script>
+        $("#login-btn").{{ login_btn_msg }}(function () {
+            $("#popup-overlay").css('display', 'block');
+            $("#popup-login").fadeIn()
+        });
+    </script>
+    <script>
+        $(".register-btn").{{ register_btn_msg }}(function () {
+            $('.popup').css('display', 'none');
+            $("#popup-overlay").css('display', 'block');
+            $("#popup-register").fadeIn()
+        });
+    </script>
+    <script type="text/javascript">
+    // FRONT SLIDER STARTER
+    jQuery(document).ready(function() {
+    jQuery('#mycarousel').jcarousel({
+    auto: 3,
+    wrap: 'last',
+    scroll: 1,
+    animation: 'slow',
+    initCallback: mycarousel_initCallback,
+    });
+    });
+    </script>
+</head>
+
+<body class="{% block page_type %}{% endblock %}">
+
+    <!-- LOGIN POP UPS -->
+    <div id="popup-overlay"></div>
+
+    {#登陆提示框#}
+    <div class="popup" id="popup-login">
+    <h2>登录</h2>
+    <hr class="separator">
+    <form method="post" action="{% url 'login' %}" class="form clearfix">
+        <fieldset>
+            <label for="login-username">用户名:</label>
+            <input type="text" name="username" id="login-username" class="input text {% if login_form.errors.username or msg %}error{% endif %}" value="{% error_msg login_form.errors.username %}{{ msg }}">
+            <label for="login-password">密码:</label>
+            <input {% if not login_form.errors.password %}type="password"{% endif %} name="password" id="login-password" class="input text {% if login_form.errors.username %}error{% endif %}" value="{% error_msg login_form.errors.password %}">
+        </fieldset>
+        <button class="button submit"> 登录 </button>
+        {% csrf_token %}
+    </form>
+    <hr class="separator">
+    {#	<button class="button submit"> 登录 </button>#}
+    <div class="links"><a href="#"> 忘记密码 </a> | <a href="#" class="register-btn"> 注册 </a></div>
+    <a class="close" href="#"></a>
+    </div>
+
+    {#注册提示框#}
+    <div class="popup" id="popup-register">
+        {% block register %}
+        {% endblock %}
+    </div>
+
+    <!-- END LOGIN POP UPS -->
+
+    <div class='wrapper'>
+
+        <header>
+            {% include 'my_users/top.html' %}
+            {% block home_header %}
+            {% endblock %}
+        </header>
+
+        {% block home_content %}
+        {% endblock %}
+
+        {% block menu_content %}
+        {% endblock %}
+
+    </div>
+
+    <footer>
+        {% include 'my_users/footer.html' %}
+    </footer>
+
+</body>
+
+</html>

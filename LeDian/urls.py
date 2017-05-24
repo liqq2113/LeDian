@@ -1,3 +1,4 @@
+# coding: utf-8
 """LeDian URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -16,8 +17,10 @@ Including another URLconf
 from django.conf.urls import url, include
 import xadmin
 from django.views.generic import TemplateView
+from django.views.static import serve
 
 from my_users.views import LoginView, RegisterView
+from LeDian.settings import MEDIA_ROOT
 
 urlpatterns = [
     url('^$', TemplateView.as_view(template_name='my_users/index.html'), name='index'),
@@ -27,4 +30,6 @@ urlpatterns = [
     url('^login/$', LoginView.as_view(), name='login'),
     url('^register/$', RegisterView.as_view(), name='register'),
     url(r'^captcha/', include('captcha.urls')),
+    # 配置上传文件的处理函数
+    url(r'media/(?P<path>.*)', serve, {'document_root': MEDIA_ROOT}),
 ]
