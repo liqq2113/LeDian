@@ -6,11 +6,25 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 
 from .forms import LoginForm, RegisterForm
-from .models import UserProfile
+from .models import UserProfile, EmailVerifyRecord
 from captcha.models import CaptchaStore
 from captcha.helpers import captcha_image_url
+from utils.email_send import send_register_email
 
-# Create your views here.
+
+class ActiveUserView(View):
+
+    def get(self, request, active_code):
+        all_records = EmailVerifyRecord.objects.filter(code=active_code)
+        if all_records:
+            for record in all_records:
+                email = record.email
+                user = UserProfile.objects.get(email=email)
+                user.is_active = True
+                user.save()
+            return render(request, 'my_users/register_succ.html')
+        else:
+            return render(request, 'my_users/active_fail.html')
 
 
 class LoginView(View):
@@ -78,8 +92,8 @@ class RegisterView(View):
             user_profile.password = make_password(pass_word)
             user_profile.save()  # 保存到数据库中
 
-            # send_register_email(user_name, 'register')
-            return render(request, 'my_users/register_succ.html')
+            send_register_email(email, 'register')
+            return render(request, 'my_users/wait_active.html')
         else:
             return render(request, 'my_users/register.html', {
                 'register_form': register_form,
