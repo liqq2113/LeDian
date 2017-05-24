@@ -37,13 +37,18 @@ class LoginView(View):
 
 class RegisterView(View):
     def get(self, request):
+        a = request.GET.get('page_type', '')
         if request.GET.get('newsn') == '1':
             csn = CaptchaStore.generate_key()
             cimageurl = captcha_image_url(csn)
             return HttpResponse(cimageurl)
 
         register_form = RegisterForm()
-        return render(request, 'my_users/register.html', {'register_form': register_form, 'register_btn_msg': 'ready'})
+        return render(request, 'my_users/register.html', {
+            'register_form': register_form,
+            'register_btn_msg': 'ready',
+            'page_type': request.GET.get('page_type', ''),
+        })
 
     def post(self, request):
         register_form = RegisterForm(request.POST)
@@ -51,9 +56,19 @@ class RegisterView(View):
             user_name = request.POST.get('username', '')
             email = request.POST.get('email', '')
             if UserProfile.objects.filter(username=user_name):
-                return render(request, 'my_users/index.html', {'register_form': register_form, 'msg': u'用户已经存在'})
+                return render(request, 'my_users/register.html', {
+                    'register_form': register_form,
+                    'msg': u'用户已经存在',
+                    'page_type': request.POST.get('page_type', ''),
+                    'register_btn_msg': 'ready',
+                })
             if UserProfile.objects.filter(email=email):
-                return render(request, 'my_users/index.html', {'register_form': register_form, 'msg': u'邮箱已经存在'})
+                return render(request, 'my_users/register.html', {
+                    'register_form': register_form,
+                    'msg': u'邮箱已经存在',
+                    'page_type': request.POST.get('page_type', ''),
+                    'register_btn_msg': 'ready',
+                })
 
             pass_word = request.POST.get('password', '')
             user_profile = UserProfile()
@@ -66,6 +81,19 @@ class RegisterView(View):
             # send_register_email(user_name, 'register')
             return render(request, 'my_users/register_succ.html')
         else:
-            return render(request, 'my_users/register.html', {'register_form': register_form, 'register_btn_msg': 'ready'})
+            return render(request, 'my_users/register.html', {
+                'register_form': register_form,
+                'register_btn_msg': 'ready',
+                'page_type': request.POST.get('page_type', ''),
+            })
 
+
+class MenuView(View):
+    def get(self, request):
+        return render(request, 'my_users/menu.html', {'page_type': 'menu'})
+
+
+class HomeView(View):
+    def get(self, request):
+        return render(request, 'my_users/index.html', {'page_type': 'home'})
 

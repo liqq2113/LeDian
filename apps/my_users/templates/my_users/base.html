@@ -20,17 +20,17 @@
     <script src="{% static 'my_users/js/script.js' %}"></script>
     <script src="{% static 'my_users/js/libs/jquery.jcarousel.min.js' %}"></script>
     <script>
-        $("#login-btn").{{ login_btn_msg }}(function () {
-            $("#popup-overlay").css('display', 'block');
-            $("#popup-login").fadeIn()
-        });
-    </script>
-    <script>
-        $(".register-btn").{{ register_btn_msg }}(function () {
-            $('.popup').css('display', 'none');
-            $("#popup-overlay").css('display', 'block');
-            $("#popup-register").fadeIn()
-        });
+                $("#login-btn").{{ login_btn_msg }}(function () {
+                    $("#popup-overlay").css('display', 'block');
+                    $("#popup-login").fadeIn()
+                });
+        </script>
+        <script>
+                $(".register-btn").{{ register_btn_msg }}(function () {
+                    $('.popup').css('display', 'none');
+                    $("#popup-overlay").css('display', 'block');
+                    $("#popup-register").fadeIn()
+                });
     </script>
     <script type="text/javascript">
     // FRONT SLIDER STARTER
@@ -50,7 +50,6 @@
 
     <!-- LOGIN POP UPS -->
     <div id="popup-overlay"></div>
-
     {#登陆提示框#}
     <div class="popup" id="popup-login">
     <h2>登录</h2>
@@ -73,18 +72,120 @@
 
     {#注册提示框#}
     <div class="popup" id="popup-register">
-        {% block register %}
-        {% endblock %}
+        <h2>注册</h2>
+		<hr class="separator">
+		<form method="post" action="{% url 'register' %}" class="form clearfix">
+        <input type='hidden' name='csrfmiddlewaretoken' value='gTZljXgnpvxn0fKZ1XkWrM1PrCGSjiCZ' />
+			<fieldset>
+				<label for="login-username">用户名:</label>
+
+				<input type="text" name="username" id="login-username"  class="input text"
+
+                       {% if register_form.errors.username %}
+                       class="input text error"
+                       onfocus="if (value =='{% error_msg register_form.errors.username %}')
+                               {className='input text';value='';}"
+                       value="{% error_msg register_form.errors.username %}"
+                       {% endif %}
+
+                       {% ifequal msg '用户已经存在' %}
+                            class="input text error" value="{{ msg }}"
+                            onfocus="if (value =='{{ msg }}')
+                                   {className='input text';value='';}"
+                       {% endifequal %}
+                >
+
+				<label for="login-email">邮箱:</label>
+				<input type="text" name="email" id="login-email" {% if register_form.errors.email %}class="input text error"  onfocus=" if (value =='{% error_msg register_form.errors.email %}'){className='input text';value='';}" value="{% error_msg register_form.errors.email %}"{% else %}class="input text"{% endif %}>
+				<label for="login-password">密码:</label>
+
+				<input name="password" id="login-password" {% if register_form.errors.password %}class="input text error" onfocus=" if (value =='{% error_msg register_form.errors.password %}'){className='input text';value='';type='password';}" value="{% error_msg register_form.errors.password %}" {% else %}type="password" class="input text" {% endif %}>
+
+				<label for="login-confirm-password">确认密码:</label>
+
+				<input name="confirm_password" id="login-confirm-password" {% if register_form.errors.confirm_password %}class="input text error" onfocus=" if (value =='{% error_msg register_form.errors.confirm_password %}'){className='input text';value='';type='password';}" value="{% error_msg register_form.errors.confirm_password %}" {% else %} type="password" class="input text" {% endif %}>
+
+            <div class="marb13 captcha1">
+
+                <label >验证码:</label>
+               {{ register_form.captcha }}
+                <script type="text/javascript">
+                    $('.captcha').click(function(){ //点击图片刷新
+                        var tmp = Math.random().toString();
+                        $.get("?newsn=1&tmp="+tmp, function(result){
+                            $('.captcha').attr("src", result);
+                            $('#id_captcha_0').attr("value", result.split('/')[3]);
+                        });
+                        return false;
+                    });
+                </script>
+            </div>
+            <div class="error marb13" >{% if register_form.errors.captcha %}验证码错误。{% endif %}{{ msg }}</div>
+			</fieldset>
+
+			<hr class="separator">
+
+{#			<div class="checks">#}
+{#				<div class="check-row">#}
+{#					<label><input type="checkbox" class="input checkbox">I have read and agree to the <a href="#">Terms &amp; Conditions</a></label>#}
+{#				</div>#}
+{#				<div class="check-row">#}
+{#					<label><input type="checkbox" class="input checkbox">I agree to recieve promotional mails</label>#}
+{#				</div>#}
+{#			</div>#}
+
+			<button class="button submit">注册</button>
+        <input type="hidden" name="page_type" value="{{ page_type }}">
+        {% csrf_token %}
+		</form>
+		<a class="close" href="#"></a>
     </div>
 
     <!-- END LOGIN POP UPS -->
 
     <div class='wrapper'>
 
-        <header>
-            {% include 'my_users/top.html' %}
-            {% block home_header %}
-            {% endblock %}
+    <header>
+<div class="top-nav">
+    {#页头#}
+    <nav>
+        <ul>
+            <li><a href="/">主页</a></li>
+            <li><a href="#" id="login-btn">登录</a></li>
+            <li><a href="{% url 'register' %}/?page_type={% block top_type %}{% endblock %}" id="register-btn">注册</a></li>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="contact.html">联系我们</a></li>
+            <li><a href="{% url 'menu' %}">菜单</a></li>
+        </ul>
+    </nav>
+    {#搜索#}
+    <form class="search-form" method="post">
+        <input type="text" class="search">
+        <input type="submit" class="search-submit" value="">
+    </form>
+</div>
+
+{#logo#}
+<a href="index.html" class="logo">
+    <img src="{% static 'my_users/images/logo.png' %}" alt="your logo" />
+</a>
+
+{#分类#}
+<nav class="main-menu">
+    <ul>
+        <li><a href="listing.html">水果蔬菜类</a></li>
+        <li><a href="listing.html">海鲜类</a></li>
+        <li><a href="listing.html">肉类</a></li>
+        <li><a href="listing.html">主菜</a></li>
+        <li><a href="listing.html">披萨和意大利面</a></li>
+        <li><a href="listing.html">甜品类</a></li>
+        <li id="lava-elm"></li>
+    </ul>
+</nav>
+
+
+        {% block home_header %}
+        {% endblock %}
         </header>
 
         {% block home_content %}
