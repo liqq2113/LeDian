@@ -11,9 +11,12 @@ class MenuView(View):
     """
     def get(self, request):
         all_dishes = Dish.objects.all()
-        dish_nums = all_dishes.count()
         all_dtypes = DishesType.objects.all()
-
+        #取出筛选类别
+        type_id = request.GET.get('type', "")
+        if type_id:
+            all_dishes = all_dishes.filter(type_id=int(type_id))
+        dish_nums = all_dishes.count()
         #对菜单列表进行翻页
         try:
             page = request.GET.get('page', 1)
@@ -23,4 +26,5 @@ class MenuView(View):
         p = Paginator(all_dishes, request=request, per_page=5)
         dishes = p.page(page)
         return render(request, 'orderApp/menu.html', {
-            'dish_nums': dish_nums, 'all_dtypes': all_dtypes, 'all_dishes': dishes})
+            'dish_nums': dish_nums, 'all_dtypes': all_dtypes,
+            'all_dishes': dishes, 'type_id': type_id})

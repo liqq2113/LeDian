@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% block list %}
+    <nav class="main-menu">
+            <ul>
+                {% for type in all_dtypes %}
+                <li><a href="?type={{ type.id }}"><span class="{% ifequal type_id type.id|stringformat:'i' %}active2{% endifequal %}">{{ type.name }}</span></a></li>
+                {% endfor %}
+                <li id="lava-elm"></li>
+            </ul>
+    </nav>
+{% endblock %}
 {% block menu_content %}
 <div class="content full-content clearfix">
 
@@ -9,7 +19,6 @@
                 <li>Entrees</li>
             </ul>
         </div>
-
         <div class="product-menu-header">
             <h2>Menu</h2>
         </div>
@@ -17,7 +26,7 @@
         <div class="product-menu-holder">
             <div>
                 <div class="left-part">
-                    <h3>所有菜品</h3>
+                    <h3>菜品</h3>
                     <h4><span class="text">清单</span><span class="line"></span></h4>
                     <ul>
                     {% for dish in all_dishes.object_list %}
