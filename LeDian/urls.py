@@ -19,7 +19,7 @@ import xadmin
 from django.views.generic import TemplateView
 from django.views.static import serve
 
-from my_users.views import LoginView, RegisterView, HomeView, MenuView
+from my_users.views import LoginView, RegisterView, HomeView, MenuView, ActiveUserView
 from LeDian.settings import MEDIA_ROOT
 
 urlpatterns = [
@@ -32,4 +32,5 @@ urlpatterns = [
     url(r'^captcha/', include('captcha.urls')),
     # 配置上传文件的处理函数
     url(r'media/(?P<path>.*)', serve, {'document_root': MEDIA_ROOT}),
+    url(r'^active/(?P<active_code>.*)/$', ActiveUserView.as_view(), name='user_active'),  # 把 .* 匹配到的字符串放到 active_code 中
 ]
