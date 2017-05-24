@@ -20,7 +20,7 @@
                     <h3>所有菜品</h3>
                     <h4><span class="text">清单</span><span class="line"></span></h4>
                     <ul>
-                    {% for dish in all_dishes %}
+                    {% for dish in all_dishes.object_list %}
                         <li>
                             <div class="img-holder"><div class="canvas"></div><img data-url="{{ MEDIA_URL }}{{ dish.image }}" src="{{ MEDIA_URL }}{{ dish.image }}" alt=""></div>
                             <div class="price">
@@ -35,8 +35,24 @@
                     </ul>
                 </div>
             </div>
-            <a href="#" class="prev">prev</a>
-            <a href="#" class="next">next</a>
+            <div class="all">共<span class="key">{{ dish_nums }}</span>个</div>
+            <div class="pagination">
+                {% if all_dishes.has_previous %}
+                    <a href="?{{ all_dishes.previous_page_number.querystring }}" class="prev">上一页</a>
+                {% endif %}
+                {% for page in all_dishes.pages %}
+                    {% if page %}
+                        {% ifequal page all_dishes.number %}
+                            <span class="current page">{{ page }}</span>
+                        {% else %}
+                            <a href="?{{ page.querystring }}" class="page">{{ page }}</a>
+                        {% endifequal %}
+                    {% endif %}
+                {% endfor %}
+                {% if all_dishes.has_next %}
+                    <a href="?{{ all_dishes.next_page_number.querystring }}" class="next">下一页</a>
+                {% endif %}
+            </div>
         </div>
     </div>
 {% endblock %}

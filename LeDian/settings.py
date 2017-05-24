@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'orderApp',
     'xadmin',
     'crispy_forms',
-    # 'pure_pagination',
+    'pure_pagination',
     'captcha',
 ]
 
@@ -61,6 +61,13 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# PAGINATION_SETTINGS = {
+#     'PAGE_RANGE_DISPLAYED': 10,
+#     'MARGIN_PAGES_DISPLAYED': 2,
+#
+#     'SHOW_FIRST_PAGE_WHEN_INVALID': True,
+# }
 
 ROOT_URLCONF = 'LeDian.urls'
 
