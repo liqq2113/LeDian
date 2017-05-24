@@ -165,24 +165,14 @@
     </form>
 </div>
 
-{#logo#}
+<!--{#logo#}-->
 <a href="index.html" class="logo">
     <img src="{% static 'my_users/images/logo.png' %}" alt="your logo" />
 </a>
 
-{#分类#}
-<nav class="main-menu">
-    <ul>
-        <li><a href="listing.html">荤菜类</a></li>
-        <li><a href="listing.html">海鲜类</a></li>
-        <li><a href="listing.html">蔬菜类</a></li>
-        <li><a href="listing.html">面食</a></li>
-        <li><a href="listing.html">汤菜</a></li>
-        <li><a href="listing.html">水果类</a></li>
-        <li id="lava-elm"></li>
-    </ul>
-</nav>
-
+<!--{#分类#}-->
+{% block list %}
+{% endblock %}
 
         {% block home_header %}
         {% endblock %}
