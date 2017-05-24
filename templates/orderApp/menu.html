@@ -22,7 +22,7 @@
                     <ul>
                     {% for dish in all_dishes %}
                         <li>
-                            <div class="img-holder"><div class="canvas"></div><img src="{{ dish.image }}" alt=""></div>
+                            <div class="img-holder"><div class="canvas"></div><img data-url="{{ MEDIA_URL }}{{ dish.image }}" src="{{ MEDIA_URL }}{{ dish.image }}" alt=""></div>
                             <div class="price">
                                 <h5><a href="#">{{ dish.name }}</a></h5>
                                 <span>{{ dish.price }}元</span>
