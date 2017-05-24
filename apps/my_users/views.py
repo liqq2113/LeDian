@@ -102,12 +102,7 @@ class RegisterView(View):
             })
 
 
-class MenuView(View):
-    def get(self, request):
-        return render(request, 'my_users/menu.html', {'page_type': 'menu'})
-
-
 class HomeView(View):
     def get(self, request):
-        return render(request, 'my_users/index.html', {'page_type': 'home'})
+        return render(request, 'index.html', {'page_type': 'home'})
 
