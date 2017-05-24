@@ -16,7 +16,7 @@ class RegisterForm(forms.Form):
     username = forms.CharField(required=True, min_length=5, error_messages={'required': u'用户名不能为空', 'min_length': u'最小长度为5'})
     email = forms.EmailField(required=True,  error_messages={'required': u'邮箱不能为空'})
     password = forms.CharField(required=True, min_length=5, error_messages={'required': u'密码不能为空', 'min_length': u'最小长度为5'})
-    confirm_password = forms.CharField(required=True, min_length=5, error_messages={'required': u'密码不能为空'})
+    confirm_password = forms.CharField(required=True, min_length=5, error_messages={'required': u'密码不能为空', 'min_length': u'最小长度为5'})
     captcha = CaptchaField(error_messages={'invalid': u'验证码错误'})
 
 
