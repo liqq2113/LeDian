@@ -15,18 +15,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-import xadmin
 from django.views.generic import TemplateView
 from django.views.static import serve
-
-from my_users.views import LoginView, RegisterView, HomeView, MenuView, ActiveUserView
+from my_users.views import LoginView, RegisterView, HomeView, ActiveUserView
+from orderApp.views import MenuView
 from LeDian.settings import MEDIA_ROOT
+import xadmin
 
 urlpatterns = [
     url('^$', HomeView.as_view(), name='index'),
     url(r'^xadmin/', xadmin.site.urls),
     url('^menu/$', MenuView.as_view(), name='menu'),
-    url(r'^xadmin/', xadmin.site.urls),
     url('^login/$', LoginView.as_view(), name='login'),
     url('^register/', RegisterView.as_view(), name='register'),
     url(r'^captcha/', include('captcha.urls')),
