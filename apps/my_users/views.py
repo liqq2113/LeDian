@@ -98,7 +98,7 @@ class RegisterView(View):
             return render(request, 'my_users/register.html', {
                 'register_form': register_form,
                 'register_btn_msg': 'ready',
-                'page_type': request.POST.get('page_type', ''),
+                'page_type': 'home',
             })
 
 

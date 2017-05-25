@@ -79,12 +79,18 @@
 			<fieldset>
 				<label for="login-username">用户名:</label>
 
-				<input type="text" name="username" id="login-username"  class="input text"
+				<input type="text" name="username" id="login-username"
                        {% if register_form.errors.username %}
                        class="input text error"
                        onfocus="if (value =='{% error_msg register_form.errors.username %}')
                                {className='input text';value='';}"
                        value="{% error_msg register_form.errors.username %}"
+                       {% elif msg == '用户已经存在' %}
+                            class="input text error" value="{{ msg }}"
+                            onfocus="if (value =='{{ msg }}')
+                                   {className='input text';value='';}"
+                       {% else %}
+                        class="input text"
                        {% endif %}
                 >
 

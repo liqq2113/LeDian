@@ -57,9 +57,41 @@
     <form method="post" action="{% url 'login' %}" class="form clearfix">
         <fieldset>
             <label for="login-username">用户名:</label>
-            <input type="text" name="username" id="login-username" class="input text {% if login_form.errors.username or msg %}error{% endif %}" value="{% error_msg login_form.errors.username %}{{ msg }}">
+            <input type="text" name="username" id="login-username"
+                   {% if login_form.errors.username %}
+                   class="input text error"
+                   onfocus="if (value =='{% error_msg login_form.errors.username %}')
+                               {className='input text';value='';}"
+                   value="{% error_msg login_form.errors.username %}"
+                   {% elif msg == '用户未激活！' %}
+                   class="input text error"
+                   onfocus="if (value =='{% error_msg msg %}')
+                               {className='input text';value='';}"
+                   value="{% error_msg msg %}"
+                   {% else %}
+                   class="input text"
+                   {% endif %}
+
+                    {% ifequal msg '用户未激活！' %}
+                    class="input text error" value="{{ msg }}"
+                    onfocus="if (value =='{{ msg }}')
+                           {className='input text';value='';}"
+                    {% endifequal %}
+            >
             <label for="login-password">密码:</label>
-            <input {% if not login_form.errors.password %}type="password"{% endif %} name="password" id="login-password" class="input text {% if login_form.errors.username %}error{% endif %}" value="{% error_msg login_form.errors.password %}">
+            <input name="password" id="login-password"
+                    {% if login_form.errors.password %}
+                        class="input text error"
+                         onfocus="if (value =='{% error_msg login_form.errors.password %}')
+                               {className='input text';value='';}"
+                        value="{% error_msg login_form.errors.password %}"
+                    {% else %}
+                        type="password"
+                        class="input text"
+                   {% endif %}
+
+            >
+        <div class="error marb13" >{{ msg }}</div>
         </fieldset>
         <button class="button submit"> 登录 </button>
         {% csrf_token %}
@@ -79,24 +111,32 @@
 			<fieldset>
 				<label for="login-username">用户名:</label>
 
-				<input type="text" name="username" id="login-username"  class="input text"
-
+				<input type="text" name="username" id="login-username"
                        {% if register_form.errors.username %}
                        class="input text error"
                        onfocus="if (value =='{% error_msg register_form.errors.username %}')
                                {className='input text';value='';}"
                        value="{% error_msg register_form.errors.username %}"
-                       {% endif %}
-
-                       {% ifequal msg '用户已经存在' %}
+                       {% elif msg == '用户已经存在' %}
                             class="input text error" value="{{ msg }}"
                             onfocus="if (value =='{{ msg }}')
                                    {className='input text';value='';}"
-                       {% endifequal %}
+                       {% else %}
+                        class="input text"
+                       {% endif %}
                 >
 
 				<label for="login-email">邮箱:</label>
-				<input type="text" name="email" id="login-email" {% if register_form.errors.email %}class="input text error"  onfocus=" if (value =='{% error_msg register_form.errors.email %}'){className='input text';value='';}" value="{% error_msg register_form.errors.email %}"{% else %}class="input text"{% endif %}>
+				<input type="text" name="email" id="login-email"
+                       {% if register_form.errors.email %}
+                       class="input text error"
+                       onfocus=" if (value =='{% error_msg register_form.errors.email %}')
+                       {className='input text';value='';}"
+                       value="{% error_msg register_form.errors.email %}"
+                       {% else %}
+                       class="input text"
+                       {% endif %}
+                >
 				<label for="login-password">密码:</label>
 
 				<input name="password" id="login-password" {% if register_form.errors.password %}class="input text error" onfocus=" if (value =='{% error_msg register_form.errors.password %}'){className='input text';value='';type='password';}" value="{% error_msg register_form.errors.password %}" {% else %}type="password" class="input text" {% endif %}>

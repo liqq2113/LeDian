@@ -1515,7 +1515,7 @@ input, textarea {box-shadow:inset 1px 1px 10px rgba(0, 0, 0, 0.3); padding:5px 1
 }
 .popup {
 	display: none;
-	padding: 16px 30px 12px;
+	padding: 16px 30px 35px;
 	background: #f7e8ce;
 	background:-moz-linear-gradient(top center, #fbf3e3, #f3e1c0);
 	background: -webkit-linear-gradient(#fbf3e3, #f3e1c0);
