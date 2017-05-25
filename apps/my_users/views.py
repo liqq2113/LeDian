@@ -10,7 +10,7 @@ from .models import UserProfile, EmailVerifyRecord
 from captcha.models import CaptchaStore
 from captcha.helpers import captcha_image_url
 from utils.email_send import send_register_email
-
+from orderApp.models import Dish, DishesType
 
 class ActiveUserView(View):
 
@@ -104,5 +104,8 @@ class RegisterView(View):
 
 class HomeView(View):
     def get(self, request):
-        return render(request, 'index.html', {'page_type': 'home'})
+        all_dishes = Dish.objects.all()
+        all_rdishes = all_dishes.filter(type_id=1)
+        all_special = all_dishes.filter(type_id=6)
+        return render(request, 'index.html', {'page_type': 'home', 'all_rdishes': all_rdishes, 'all_special': all_special})
 

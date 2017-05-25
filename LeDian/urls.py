@@ -25,6 +25,7 @@ urlpatterns = [
     url('^$', HomeView.as_view(), name='index'),
     url(r'^xadmin/', xadmin.site.urls),
     url('^menu/$', MenuView.as_view(), name='menu'),
+    url('^order/', include('orderApp.urls')),
     url('^login/$', LoginView.as_view(), name='login'),
     url('^register/', RegisterView.as_view(), name='register'),
     url(r'^captcha/', include('captcha.urls')),

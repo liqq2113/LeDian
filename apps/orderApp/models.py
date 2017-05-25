@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-
+from my_users.models import UserProfile
 
 class DishesType(models.Model):
     name = models.CharField(max_length=100, verbose_name=u'菜品类别')
@@ -33,6 +33,8 @@ class Dish(models.Model):
 
 
 class ShoppingCart(models.Model):
+    user = models.ForeignKey(UserProfile, verbose_name=u"用户")
+    add_id = models.IntegerField(default=0, verbose_name=u"数据id")
     dishes = models.ManyToManyField(Dish, verbose_name=u'菜品')
     total_price = models.FloatField(verbose_name=u'总价')
 
