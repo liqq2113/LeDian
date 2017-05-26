@@ -116,8 +116,9 @@ class LoginView(View):
             else:
                 if user.is_active:
                     login(request, user)
+                    userr = UserProfile.objects.get(username=request.user.username)
                     return render(request, 'index.html', {
-                        'login_btn_msg': 'click', 'username': user_name,
+                        'login_btn_msg': 'click', 'user': userr,
                         'page_type': 'home', 'all_rdishes': all_rdishes,
                         'all_special': all_special, 'pro_num': pro_num,
                         'pro_ship': pro_ship, 'pro_total': pro_total})
