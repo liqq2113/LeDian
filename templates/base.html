@@ -146,8 +146,29 @@
     <div class='wrapper'>
 
     <header>
+        {% block login %}
+    {% if request.user.is_authenticated %}
         <div class="top-nav">
-    <nav>
+        <nav>
+        <ul>
+            <li><a href="#" id="lo-btn">欢迎您{{ user.username }}</a></li>
+            <li><a href="#">个人中心</a></li>
+            <li><a href="/">主页</a></li>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="contact.html">联系我们</a></li>
+            <li><a href="{% url 'menu' %}">菜单</a></li>
+        </ul>
+        </nav>
+            <form class="search-form" action="/search/" method="post">
+
+                <input type="text" name="keywords" class="search">
+                <input type="submit" class="search-submit" value="">
+                {% csrf_token %}
+            </form>
+        </div>
+        {% else %}
+        <div class="top-nav">
+        <nav>
         <ul>
             <li><a href="#" id="login-btn">登录</a></li>
             <li><a href="{% url 'register' %}/?page_type={% block top_type %}{% endblock %}" id="register-btn">注册</a></li>
@@ -156,15 +177,16 @@
             <li><a href="contact.html">联系我们</a></li>
             <li><a href="{% url 'menu' %}">菜单</a></li>
         </ul>
-    </nav>
+        </nav>
             <form class="search-form" action="/search/" method="post">
-        {% csrf_token %}
-        <input type="text" name="keywords" class="search">
-        <input type="submit" class="search-submit" value="">
-    </form>
-    </div>
 
-
+            <input type="text" name="keywords" class="search">
+            <input type="submit" class="search-submit" value="">
+                {% csrf_token %}
+            </form>
+        </div>
+        {% endif %}
+    {% endblock %}
 <!--{#logo#}-->
 <a href="index.html" class="logo">
     <img src="{% static 'my_users/images/logo.png' %}" alt="your logo" />
