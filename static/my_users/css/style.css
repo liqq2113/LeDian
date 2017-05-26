@@ -284,6 +284,12 @@ a.logo {
   overflow: hidden;
   margin: 0 0 5px 0;
 }
+#meals-of-the-day .meal .img-hold {
+  width: 327px;
+  height: 327px;
+  overflow: hidden;
+  margin: 0 0 5px 0;
+}
 #meals-of-the-day .meal .desc-holder {
   padding: 0 14px;
 }

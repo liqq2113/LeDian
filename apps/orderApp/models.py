@@ -33,15 +33,14 @@ class Dish(models.Model):
 
 
 class ShoppingCart(models.Model):
-    user = models.ForeignKey(UserProfile, verbose_name=u"用户")
-    add_id = models.IntegerField(default=0, verbose_name=u"数据id")
-    dishes = models.ManyToManyField(Dish, verbose_name=u'菜品')
-    total_price = models.FloatField(verbose_name=u'总价')
+    product = models.ForeignKey(Dish, default=1, verbose_name=u"菜品")
+    unit_price = models.DecimalField(default=0, max_digits=8, decimal_places=2, verbose_name=u"单价")
+    quantity = models.IntegerField(default=0, verbose_name=u"菜品数量")
 
     class Meta:
         verbose_name = u'购物车'
         verbose_name_plural = verbose_name
 
     def __unicode__(self):
-        return self.name
+        return self.product
 
