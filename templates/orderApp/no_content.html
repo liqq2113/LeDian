@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block list %}
+    <nav class="main-menu">
+            <ul>
+                {% for type in all_dtypes %}
+                <li><a href="?type={{ type.id }}"><span class="{% ifequal type_id type.id|stringformat:'i' %}active2{% endifequal %}">{{ type.name }}</span></a></li>
+                {% endfor %}
+                <li id="lava-elm"></li>
+            </ul>
+    </nav>
+{% endblock %}
+{% block menu_content %}
+<div class="content full-content clearfix">
+    没有你想要的搜索结果
+</div>
+{% endblock %}

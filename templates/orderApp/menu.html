@@ -11,6 +11,14 @@
     </nav>
 {% endblock %}
 {% block menu_content %}
+<script type="text/javascript">
+        function message(text){
+            if(text=='success'){
+                alert("加入购物车成功！");
+            }
+        }
+            message()
+</script>
 <div class="content full-content clearfix">
 
         <div class="breadcrumbs">
@@ -40,7 +48,7 @@
                                    {{  dish.description }}
                             </div>
                             <div>
-                               <a href="#" class="right_part" >加入购物车</a>
+                               <a href="/?cart_add={{ dish.id }}" class="right_part" onclick="message('success')">加入购物车</a>
                             </div>
                         </li>
                     {% endfor %}

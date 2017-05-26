@@ -10,7 +10,6 @@
 {% block home_header %}
     {% include 'my_users/home_header.html' %}
 {% endblock %}
-
 {% block home_content %}
     <script type="text/javascript">
         function message(text){
@@ -79,41 +78,4 @@
 
     </div>
 {% endblock %}
-{% block list %}
-    <nav class="main-menu">
-            <ul>
-                <li><a href="listing.html">荤菜类</a></li>
-                <li><a href="listing.html">海鲜类</a></li>
-                <li><a href="listing.html">蔬菜类</a></li>
-                <li><a href="listing.html">面食</a></li>
-                <li><a href="listing.html">汤菜</a></li>
-                <li><a href="listing.html">水果类</a></li>
-                <li id="lava-elm"></li>
-            </ul>
-    </nav>
-    {% endblock %}
 </div>
-<!--<script type="text/javascript">-->
-<!--function add_cart(current_elem, product_id){-->
-    <!--$.ajax({-->
-        <!--cache: false,-->
-        <!--type: "GET",-->
-        <!--url:"{% url "cart: add_cart" %}",-->
-        <!--data:{'product_id': product_id},-->
-        <!--async: true,-->
-        <!--beforeSend:function(xhr, setting){-->
-            <!--xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");-->
-        <!--},-->
-        <!--success: function(data) {-->
-            <!--console.log(data)-->
-            <!--console.log(current_elem)-->
-            <!--if(data.status == 'fail'){-->
-                <!--if(data.msg == '加入购物车失败'){-->
-                    <!--window.location.href="#";-->
-                <!--}else{-->
-                    <!--current_elem.text(data.msg)-->
-                    <!--}-->
-                <!--}-->
-        <!--})-->
-<!--}-->
-<!--</script>-->

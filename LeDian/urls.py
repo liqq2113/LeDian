@@ -17,7 +17,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.views.static import serve
 from my_users.views import LoginView, RegisterView, HomeView, ActiveUserView
-from orderApp.views import MenuView
+from orderApp.views import MenuView, SearchView
 from LeDian.settings import MEDIA_ROOT
 import xadmin
 
@@ -30,6 +30,8 @@ urlpatterns = [
     url('^register/', RegisterView.as_view(), name='register'),
     #后台管理
     url(r'^xadmin/', xadmin.site.urls),
+    #搜索
+    url('^search/$', SearchView.as_view(), name='search'),
     #菜单
     url('^menu/$', MenuView.as_view(), name='menu'),
     #购物车

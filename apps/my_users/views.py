@@ -29,24 +29,108 @@ class ActiveUserView(View):
 
 class LoginView(View):
     def get(self, request):
-        return render(request, 'my_users/index.html', {'login_btn_msg': 'ready'})
+        all_dishes = Dish.objects.all()
+        all_rdishes = all_dishes.filter(type_id=1)
+        all_special = all_dishes.filter(type_id=6)
+        product_id = request.GET.get('cart_add', 0)
+        if int(product_id) > 0:
+            product = Dish.objects.get(id=product_id)
+            exist_records = ShoppingCart.objects.filter(product_id=int(product_id))
+            if exist_records:
+                for record in exist_records:
+                    record.quantity += 1
+                    record.save()
+            else:
+                product_add = ShoppingCart()
+                if int(product_id) > 0:
+                    product_add.product_id = int(product_id)
+                    product_add.unit_price = product.price
+                    product_add.quantity = 1
+                    product_add.save()
+                else:
+                    return HttpResponse('{"status": "fail", "msg": "You failed"}', content_type='application/json')
+        ##显示主页面的购物车
+        all_products = ShoppingCart.objects.all()
+        # 商品数量
+        pro_num = 0
+        # 运费
+        pro_ship = 0
+        # 结算金额
+        pro_total = 0
+        for pro in all_products:
+            pro_num += pro.quantity
+            pro_ship += pro.quantity * 2
+            pro_total += pro.unit_price * pro.quantity
+        pro_total += pro_ship
+        return render(request, 'index.html', {'login_btn_msg': 'ready',
+                                              'page_type': 'home', 'all_rdishes': all_rdishes,
+                                              'all_special': all_special, 'pro_num': pro_num,
+                                              'pro_ship': pro_ship, 'pro_total': pro_total})
 
     def post(self, request):
         login_form = LoginForm(request.POST)
+        ###
+        all_dishes = Dish.objects.all()
+        all_rdishes = all_dishes.filter(type_id=1)
+        all_special = all_dishes.filter(type_id=6)
+        product_id = request.GET.get('cart_add', 0)
+        if int(product_id) > 0:
+            product = Dish.objects.get(id=product_id)
+            exist_records = ShoppingCart.objects.filter(product_id=int(product_id))
+            if exist_records:
+                for record in exist_records:
+                    record.quantity += 1
+                    record.save()
+            else:
+                product_add = ShoppingCart()
+                if int(product_id) > 0:
+                    product_add.product_id = int(product_id)
+                    product_add.unit_price = product.price
+                    product_add.quantity = 1
+                    product_add.save()
+                else:
+                    return HttpResponse('{"status": "fail", "msg": "You failed"}', content_type='application/json')
+        ##显示主页面的购物车
+        all_products = ShoppingCart.objects.all()
+        # 商品数量
+        pro_num = 0
+        # 运费
+        pro_ship = 0
+        # 结算金额
+        pro_total = 0
+        for pro in all_products:
+            pro_num += pro.quantity
+            pro_ship += pro.quantity * 2
+            pro_total += pro.unit_price * pro.quantity
+        pro_total += pro_ship
+        ###
         if login_form.is_valid():
             user_name = request.POST.get('username', '')
             pass_word = request.POST.get('password', '')
             user = authenticate(username=user_name, password=pass_word)
             if user is None:
-                return render(request, 'my_users/index.html', {'msg': u'用户名或密码错误！', 'login_btn_msg': 'ready'})
+                return render(request, 'index.html', {'msg': u'用户名或密码错误！', 'login_btn_msg': 'ready',
+                                                      'page_type': 'home', 'all_rdishes': all_rdishes,
+                                                      'all_special': all_special, 'pro_num': pro_num,
+                                                      'pro_ship': pro_ship, 'pro_total': pro_total})
             else:
                 if user.is_active:
                     login(request, user)
-                    return render(request, 'my_users/login_succ.html', {'login_btn_msg': 'click'})
+                    return render(request, 'index.html', {
+                        'login_btn_msg': 'click', 'username': user_name,
+                        'page_type': 'home', 'all_rdishes': all_rdishes,
+                        'all_special': all_special, 'pro_num': pro_num,
+                        'pro_ship': pro_ship, 'pro_total': pro_total})
                 else:
-                    return render(request, 'my_users/index.html', {'msg': u'用户未激活！', 'login_btn_msg': 'ready'})
+                    return render(request, 'index.html', {'msg': u'用户未激活！', 'login_btn_msg': 'ready',
+                                                          'page_type': 'home', 'all_rdishes': all_rdishes,
+                                                          'all_special': all_special, 'pro_num': pro_num,
+                                                          'pro_ship': pro_ship, 'pro_total': pro_total})
         else:
-            return render(request, 'my_users/index.html', {'login_form': login_form, 'login_btn_msg': 'ready'})
+            return render(request, 'index.html', {'login_form': login_form, 'login_btn_msg': 'ready',
+                                                  'page_type': 'home', 'all_rdishes': all_rdishes,
+                                                  'all_special': all_special, 'pro_num': pro_num,
+                                                  'pro_ship': pro_ship, 'pro_total': pro_total})
 
 
 class RegisterView(View):
@@ -72,14 +156,14 @@ class RegisterView(View):
             if UserProfile.objects.filter(username=user_name):
                 return render(request, 'my_users/register.html', {
                     'register_form': register_form,
-                    'msg': u'用户已经存在',
+                    'msg': u'用户已经存在, 请重新输入',
                     'page_type': request.POST.get('page_type', ''),
                     'register_btn_msg': 'ready',
                 })
             if UserProfile.objects.filter(email=email):
                 return render(request, 'my_users/register.html', {
                     'register_form': register_form,
-                    'msg': u'邮箱已经存在',
+                    'msg': u'邮箱已经存在, 请重新输入',
                     'page_type': request.POST.get('page_type', ''),
                     'register_btn_msg': 'ready',
                 })
