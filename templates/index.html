@@ -12,6 +12,14 @@
 {% endblock %}
 
 {% block home_content %}
+    <script type="text/javascript">
+        function message(text){
+            if(text=='success'){
+                alert("加入购物车成功！");
+            }
+        }
+            message()
+    </script>
     <div class="content clearfix">
         {#今日肉类#}
         <div id="meals-of-the-day">
@@ -24,7 +32,7 @@
                         <h1><a href="#">{{ rdish.name }}</a></h1>
                         <p>{{ rdish.description }}</p>
                         <span class="price">{{ rdish.price }}元</span>
-                        <a href="#" class="add-to-cart-button">加入购物车</a>
+                        <a href="?cart_add={{ rdish.id }}" class="add-to-cart-button" onclick="message('success')">加入购物车</a>
                     </div>
                 </li>
                 {% endfor %}
@@ -40,7 +48,7 @@
                     <h1><a href="#">{{ special.name }}</a></h1>
                     <p>{{ special.description }}</p>
                     <span class="price">{{ dish.price }}元</span>
-                    <a href="#" class="add-to-cart-button">加入购物车</a>
+                    <a href="?cart_add={{ special.id }}" class="add-to-cart-button" onclick="message('success')">加入购物车</a>
                 </li>
                 {% endfor %}
             </ul>
@@ -52,19 +60,19 @@
             <div class="body">
                 <ul>
                     <li class="info">
-                        <span class="products"><strong>5</strong> 菜品</span>
-                        <a href="#">查看购物车</a>
+                        <span class="products"><strong>{{　pro_num }}</strong> 菜品</span>
+                        <a href="/cart/view_cart/">查看购物车</a>
                     </li>
                     <li class="price">
                         <span class="label">运费</span>
-                        <span class="value">0.00元</span>
+                        <span class="value">{{ pro_ship }}元</span>
                     </li>
                     <li class="price">
                         <span class="label">总计</span>
-                        <span class="value">0.00元</span>
+                        <span class="value">{{ pro_total }}元</span>
                     </li>
                 </ul>
-                <a class="submit-button" href="#">结算</a>
+                <a class="submit-button" href="cart/checkout/">结算</a>
                 <div class="graphic"></div>
             </div>
         </div>
@@ -85,4 +93,27 @@
     </nav>
     {% endblock %}
 </div>
-
+<!--<script type="text/javascript">-->
+<!--function add_cart(current_elem, product_id){-->
+    <!--$.ajax({-->
+        <!--cache: false,-->
+        <!--type: "GET",-->
+        <!--url:"{% url "cart: add_cart" %}",-->
+        <!--data:{'product_id': product_id},-->
+        <!--async: true,-->
+        <!--beforeSend:function(xhr, setting){-->
+            <!--xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");-->
+        <!--},-->
+        <!--success: function(data) {-->
+            <!--console.log(data)-->
+            <!--console.log(current_elem)-->
+            <!--if(data.status == 'fail'){-->
+                <!--if(data.msg == '加入购物车失败'){-->
+                    <!--window.location.href="#";-->
+                <!--}else{-->
+                    <!--current_elem.text(data.msg)-->
+                    <!--}-->
+                <!--}-->
+        <!--})-->
+<!--}-->
+<!--</script>-->

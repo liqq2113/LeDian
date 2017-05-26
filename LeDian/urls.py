@@ -22,12 +22,20 @@ from LeDian.settings import MEDIA_ROOT
 import xadmin
 
 urlpatterns = [
+    #主页
     url('^$', HomeView.as_view(), name='index'),
-    url(r'^xadmin/', xadmin.site.urls),
-    url('^menu/$', MenuView.as_view(), name='menu'),
-    url('^order/', include('orderApp.urls')),
+    #登录
     url('^login/$', LoginView.as_view(), name='login'),
+    #注册
     url('^register/', RegisterView.as_view(), name='register'),
+    #后台管理
+    url(r'^xadmin/', xadmin.site.urls),
+    #菜单
+    url('^menu/$', MenuView.as_view(), name='menu'),
+    #购物车
+    url('^order/', include('orderApp.urls')),
+    url('^cart/', include('orderApp.urls')),
+
     url(r'^captcha/', include('captcha.urls')),
     # 配置上传文件的处理函数
     url(r'media/(?P<path>.*)', serve, {'document_root': MEDIA_ROOT}),

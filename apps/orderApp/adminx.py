@@ -19,9 +19,9 @@ class DishesTypeAdmin(object):
 
 
 class ShoppingCartAdmin(object):
-    list_display = ['dishes', 'total_price']
-    search_fields = ['dishes', 'total_price']
-    list_filter = ['dishes', 'total_price']
+    list_display = ['product', 'unit_price', 'quantity']
+    search_fields = ['product', 'quantity']
+    list_filter = ['product', 'quantity']
 
 
 xadmin.site.register(Dish, DishAdmin)

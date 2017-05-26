@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %} 我的购物车{% endblock %}
+{% block menu_content %}
+<div id="meals-of-the-day">
+            <h3 class="title-separator"><span class="title">支付方式</span><span class="sep"></span></h3>
+            <ul>
+                <li class="meal">
+                    <div class="img-hold"><img  src="/static/orderApp/images/zhifubao.jpg" alt=""></div>
+                    <div class="desc-holder">
+                        <h1><a href="#">支付宝付款</a></h1>
+                        <p>请使用支付宝扫一扫上面的付款码完成付款</p>
+                    </div>
+                </li>
+                <li class="meal">
+                    <div class="img-hold"><img src="/static/orderApp/images/wx.jpg" alt=""></div>
+                    <div class="desc-holder">
+                        <h1><a href="#">微信付款</a></h1>
+                        <p>请使用微信扫一扫上面的付款码完成付款</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+{% endblock %}
