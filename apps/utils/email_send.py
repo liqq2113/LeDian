@@ -20,7 +20,7 @@ def send_register_email(email, send_type='register'):
 
     if send_type == 'register':
         email_title = u'LeDian点菜系统注册激活链接'
-        email_body = u'请点击下面的链接激活你的账号：http://127.0.0.1:8000/active/%s' % (code,)
+        email_body = u'请点击下面的链接激活你的账号：http://127.0.0.1:8000/active/%s'.format(code)
 
         send_status = send_mail(email_title, email_body, EMAIL_FROM, [email])
         if send_status:
@@ -28,7 +28,7 @@ def send_register_email(email, send_type='register'):
 
     if send_type == 'forget':
         email_title = u'LeDian点菜系统密码重置链接'
-        email_body = u'请点击下面的链接重置密码：http://127.0.0.1:8000/reset/%s' % (code,)
+        email_body = u'请点击下面的链接重置密码：http://127.0.0.1:8000/reset/%s'.format(code)
 
         send_status = send_mail(email_title, email_body, EMAIL_FROM, [email])
         if send_status:

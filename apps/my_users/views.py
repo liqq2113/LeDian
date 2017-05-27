@@ -2,8 +2,8 @@
 from django.shortcuts import render
 from django.views.generic.base import View
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse, HttpResponseRedirect
 
 from .forms import LoginForm, RegisterForm
 from .models import UserProfile, EmailVerifyRecord
@@ -226,3 +226,10 @@ class HomeView(View):
             'page_type': 'home', 'all_rdishes': all_rdishes,
             'all_special': all_special, 'pro_num': pro_num,
             'pro_ship': pro_ship, 'pro_total': pro_total})
+
+class LogoutView(View):
+    #用户登出
+    def get(self, request):
+        from django.core.urlresolvers import  reverse
+        logout(request)
+        return HttpResponseRedirect(reverse("index"))

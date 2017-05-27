@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.views.static import serve
-from my_users.views import LoginView, RegisterView, HomeView, ActiveUserView
+from my_users.views import LoginView, RegisterView, HomeView, ActiveUserView, LogoutView
 from orderApp.views import MenuView, SearchView
 from LeDian.settings import MEDIA_ROOT
 import xadmin
@@ -37,7 +37,8 @@ urlpatterns = [
     #购物车
     url('^order/', include('orderApp.urls')),
     url('^cart/', include('orderApp.urls')),
-
+    #退出系统
+    url('^logout/', LogoutView.as_view(), name="logout"),
     url(r'^captcha/', include('captcha.urls')),
     # 配置上传文件的处理函数
     url(r'media/(?P<path>.*)', serve, {'document_root': MEDIA_ROOT}),
